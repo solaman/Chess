@@ -21,14 +21,14 @@ public class HexagonalBoardPanel extends BoardPanel {
 	public HexagonalBoardPanel(HexagonalBoard board) {
 		super(board);
 	}
-	
+
 	@Override
 	public Cell cellFromMouseEvent(MouseEvent e){
 		int xCoord= (int)((e.getX())/(cellSideLength*BOXLENGTHRATIO) );
 		int yCoord= (int)((e.getY())/(cellSideLength*BOXHEIGHTRATIO) );
 		if ( xCoord <0 || yCoord <0 || xCoord >= xLength || yCoord >= yLength )
 			return null;
-		if( board.getPlayerTurn() == 0)
+		if( player == 0)
 			return ( (HexagonalCell)grid[xCoord][yLength-yCoord-1]).getClickedCell(e.getX(), e.getY());
 		else
 			return ( (HexagonalCell)grid[xLength-1-xCoord][yCoord]).getClickedCell(

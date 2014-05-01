@@ -21,7 +21,7 @@ import main.ChessPiece;
  */
 public class GlinskisChess extends ChessGame {
 	
-	private static final String NAME = "Glinski's Chess";
+	public static final String NAME = "Glinski's Chess";
 	
 	@Override
 	public HexagonalBoard setUp() {

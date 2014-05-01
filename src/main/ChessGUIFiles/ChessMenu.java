@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -30,6 +32,9 @@ import main.chessPieces.Knight;
 import main.chessPieces.Pawn;
 import main.chessPieces.Queen;
 import main.chessPieces.Rook;
+import main.onlineFiles.CommandClient;
+import main.onlineFiles.CommandHandler;
+import main.onlineFiles.CommandServer;
 
 public class ChessMenu {
 	static JMenuBar menuBar;
@@ -44,13 +49,37 @@ public class ChessMenu {
     	menuBar= new JMenuBar();
     	addStartGameMenu( frame, menuBar);
     	addCreateGameMenu(frame, menuBar);
+    	addPlayOnlineMenu(frame, menuBar);
     	
     	frame.setJMenuBar(menuBar);
     	frame.pack();
     	
     }
     
-    public static void restartMenu(){
+    private static void addPlayOnlineMenu(JFrame frame, JMenuBar menuBar2) {
+		JMenu playOnlineMenu= new JMenu("play online");
+		JMenuItem play= new JMenuItem("play");
+		play.addActionListener(new PlayOnlineAction(frame));
+		playOnlineMenu.add(play);
+		menuBar2.add(playOnlineMenu);
+		
+	}
+    
+    private static class PlayOnlineAction implements ActionListener{
+    	JFrame frame;
+    	
+    	public PlayOnlineAction(JFrame frame){
+    		this.frame= frame;
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			new PlayOnlineActivity(frame);
+			
+		}
+    }
+
+	public static void restartMenu(){
     	Thisframe.setJMenuBar(null);
     	buildMenu(Thisframe);
     }
@@ -80,7 +109,19 @@ public class ChessMenu {
     public static void addStartGameMenu(JFrame frame, JMenuBar menuBar){
     	JMenu newGameMenu= new JMenu("start new Game");
     	menuBar.add(newGameMenu);
-    	ArrayList<ChessGame> gamesToStart= new ArrayList<ChessGame>();
+    	List<ChessGame> gamesToPlay= getGamesToPlay(); 
+    		
+    	
+    	for( ChessGame game : gamesToPlay){
+    		JMenuItem menuItem= new JMenuItem(game.getName(), 0);
+    		menuItem.addActionListener( new StartGameAction(frame, game) );
+    		newGameMenu.add( menuItem);
+    	}
+    	
+    }
+    
+    public static List<ChessGame> getGamesToPlay(){
+    	List<ChessGame> gamesToStart= new ArrayList<ChessGame>();
     	gamesToStart.add( new GlinskisChess());
     	gamesToStart.add( new ShafransChess());
     	gamesToStart.add( new StandardChess());
@@ -92,14 +133,7 @@ public class ChessMenu {
 				gamesToStart.add( custom);
 			} catch (IOException | JSONException e) { e.printStackTrace(); }
     	}
-    		
-    	
-    	for( ChessGame game : gamesToStart){
-    		JMenuItem menuItem= new JMenuItem(game.getName(), 0);
-    		menuItem.addActionListener( new StartGameAction(frame, game) );
-    		newGameMenu.add( menuItem);
-    	}
-    	
+    	return gamesToStart;
     }
     
     public static class StartGameAction implements ActionListener{

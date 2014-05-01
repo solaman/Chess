@@ -20,7 +20,7 @@ import main.chessPieces.Rook;
  */
 public class ShafransChess extends ChessGame {
 	
-	private static final String NAME= "Shafran's Chess";
+	public static final String NAME= "Shafran's Chess";
 
 	@Override
 	public HexagonalBoard setUp() {

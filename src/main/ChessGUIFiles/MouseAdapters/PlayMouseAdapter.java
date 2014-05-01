@@ -42,7 +42,7 @@ public class PlayMouseAdapter extends MouseAdapter {
 			this.panel.addMouseMotionListener(this);
 		}
 		
-		private void loserMessage() {
+		protected void loserMessage() {
 			ChessBoard board= panel.board;
 			int playerTurn= board.getPlayerTurn();
 			try {
@@ -97,14 +97,7 @@ public class PlayMouseAdapter extends MouseAdapter {
 				List< CommandSequence> toCheck= activePiece.getAllCommandSequences(panel.board);
 				for(CommandSequence commandSequence : toCheck)
 					if( (clickedSpace == commandSequence.getTargetSpace())){
-						try {
-							panel.board.performMovePermanent( commandSequence);
-							activePiece = null;
-							loserMessage();
-							panel.repaint();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
+						doCommand(commandSequence);
 						return;
 					}
 			}
@@ -119,6 +112,18 @@ public class PlayMouseAdapter extends MouseAdapter {
 				}
 			}
 			panel.repaint();
+			
+		}
+
+		protected void doCommand(CommandSequence commandSequence) {
+			try {
+				panel.board.performMovePermanent( commandSequence);
+				activePiece = null;
+				loserMessage();
+				panel.repaint();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			
 		}		 
 }

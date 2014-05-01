@@ -1,12 +1,23 @@
 package main.onlineFiles;
 
+import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
-import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
+import javax.swing.JFrame;
 
+import main.ChessBoard;
+import main.ChessGUIFiles.MouseAdapters.OnlinePlayMouseAdapter;
+import main.ChessGUIFiles.PlayOnlineActivity.StartOnlineGameAction;
+import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
+import main.chessGames.CustomGame;
+import main.chessGames.GlinskisChess;
+import main.chessGames.ShafransChess;
+import main.chessGames.StandardChess;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -16,23 +27,43 @@ import org.json.JSONObject;
 public class CommandHandler {
 		
 		BoardPanel panel;
+		public JFrame frame;
 		
-		private Semaphore responseReadSemaphore;
-		private Semaphore responseWriteSemaphore;
-		private Semaphore requestSemaphore;
-		private List<JSONObject> responseCommands;
-		private List<JSONObject> requestCommands;
+		private Semaphore mainReadSemaphore;
+		private Semaphore mainWriteSemaphore;
+		private Semaphore subSemaphore;
+		private List<JSONObject> mainCommands;
 		
-		private int player;
+		private Semaphore gamePutSemaphore;
+		private Semaphore gameGetSemaphore;
+		private StartOnlineGameAction gameAction;
 		
-		public CommandHandler(int player, BoardPanel panel) throws IOException { 
-			this.panel= panel;
-		    responseReadSemaphore= new Semaphore(0);
-		    responseWriteSemaphore= new Semaphore(1);
-		    requestSemaphore= new Semaphore(1);
-		    responseCommands= new ArrayList<JSONObject>();
-		    requestCommands= new ArrayList<JSONObject>();
+		public CommandHandler() throws IOException { 
+		    mainReadSemaphore= new Semaphore(0);
+		    mainWriteSemaphore= new Semaphore(1);
+		    subSemaphore= new Semaphore(1);
+		    gamePutSemaphore= new Semaphore(1);
+		    gameGetSemaphore= new Semaphore(0);
+		    mainCommands= new ArrayList<JSONObject>();
+		    new ArrayList<JSONObject>();
 
+		}
+		
+		public void setFrame(JFrame frame){
+			this.frame= frame;
+		}
+		
+		public void chooseGame(StartOnlineGameAction action){
+			try {
+				gamePutSemaphore.acquire();
+				gameAction= action;
+				gamePutSemaphore.release();
+				gameGetSemaphore.release();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 		/**
@@ -40,12 +71,12 @@ public class CommandHandler {
 		 * if too many commands have been added (4)
 		 * @param toAdd -JSONObject of command to add
 		 */
-		public void addRequestCommand(JSONObject toAdd){
+		public void addMainCommand(JSONObject toAdd){
 			try {
-				responseWriteSemaphore.acquire();
-				responseCommands.add( toAdd);
-				responseReadSemaphore.release();
-				responseWriteSemaphore.release();
+				mainWriteSemaphore.acquire();
+				mainCommands.add( toAdd);
+				mainReadSemaphore.release();
+				//mainWriteSemaphore.release();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -58,13 +89,13 @@ public class CommandHandler {
 		 * if no command is available
 		 * @return JSONObject of command
 		 */
-		private JSONObject removeRequestCommand(){
+		JSONObject removeMainCommand(){
 			JSONObject toReturn=null;
 			try {
-				responseReadSemaphore.acquire();
-				toReturn = responseCommands.remove(0);
-				responseWriteSemaphore.release();
-				responseReadSemaphore.release();
+				mainReadSemaphore.acquire();
+				toReturn = mainCommands.remove(0);
+				mainWriteSemaphore.release();
+				//mainReadSemaphore.release();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -72,19 +103,15 @@ public class CommandHandler {
 			return toReturn;
 		}
 		
-		public void doRequestCommand(JSONObject toDo){
+		public void doSubCommand(JSONObject toDo){
 			try {
-				requestSemaphore.acquire();
+				subSemaphore.acquire();
 				doCommand(toDo);
-				requestSemaphore.release();
+				subSemaphore.release();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		
-		public void doResponseCommand(){
-			doCommand( removeRequestCommand() );
 		}
 
 		/**
@@ -97,10 +124,46 @@ public class CommandHandler {
 				if(toDo.getString("type").equals("command sequence")){
 					panel.board.performMovePermanent(toDo.getJSONObject("content"));
 				panel.repaint();
+				} else if( toDo.getString("type").equals("start the game!")){
+					gameGetSemaphore.acquire();
+					gamePutSemaphore.acquire();
+					panel= gameAction.startGame();
+				} else if( toDo.getString("type").equals("game started")){
+					panel= startGame( toDo);
 				}
+				else System.out.println("wtf");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		
+		private BoardPanel startGame(JSONObject gameJSON){
+			ChessBoard board;
+			try {
+				JSONObject content= gameJSON.getJSONObject("content");
+				String className= content.getString("class");
+				if( className.equals(StandardChess.NAME))
+					board= new StandardChess().setUp();
+				else if( className.equals(GlinskisChess.NAME) )
+					board= new GlinskisChess().setUp();
+				else if( className.equals(ShafransChess.NAME))
+					board= new ShafransChess().setUp();
+				else
+					board= new CustomGame( content.getJSONObject("bluePrint")).setUp();
+				BoardPanel panel= board.getRepresentation();
+				panel.player= 0;
+				new OnlinePlayMouseAdapter( panel, 0, this);
+				
+				frame.getContentPane().removeAll();
+				frame.getContentPane().add( panel, BorderLayout.CENTER);
+		        frame.setSize( panel.getPreferredSize());
+		        frame.pack();
+		        return panel;
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
 		}
 		
 }

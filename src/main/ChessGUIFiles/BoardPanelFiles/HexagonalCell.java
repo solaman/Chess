@@ -108,10 +108,10 @@ public class HexagonalCell extends Cell {
 	 * @param g2
 	 */
 	@Override
-	public void drawCell(Graphics2D g2, int playerTurn) {
+	public void drawCell(Graphics2D g2, int player) {
 		if( cellShape == null)
 			return;
-		super.drawCell(g2, playerTurn);
+		super.drawCell(g2, player);
 	}
 
 	private double getScaleFactorToFit(Dimension original, Dimension toFit) {

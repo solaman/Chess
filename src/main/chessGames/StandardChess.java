@@ -23,7 +23,7 @@ import main.chessPieces.Rook;
  */
 public class StandardChess extends ChessGame {
 	
-	private static final String NAME= "Standard Chess";
+	public static final String NAME= "Standard Chess";
 	
 	@Override
 	public ChessBoard setUp(){

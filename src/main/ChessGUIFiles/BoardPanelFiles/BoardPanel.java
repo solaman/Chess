@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
@@ -44,7 +43,7 @@ public class BoardPanel extends JPanel {
 	
 	public ChessBoard board;
 	
-	public MouseAdapter mouseAdapter;
+	public int player;
 	
 	/**
 	 * ChessBoardJPanel constructor
@@ -59,6 +58,11 @@ public class BoardPanel extends JPanel {
 		this.board= board;
 		this.setGridDimensions();
 		this.buildGrid();
+		player=0;
+	}
+	
+	public void setPlayer(int player){
+		this.player= player;
 	}
 	
 	protected void buildGrid(){
@@ -73,12 +77,13 @@ public class BoardPanel extends JPanel {
 			}
 	}
 	
+
 	public Cell cellFromMouseEvent(MouseEvent e){
 		int xCoord = e.getX()/cellSideLength;
 		int yCoord = e.getY()/cellSideLength; 
 		if ( xCoord <0 || yCoord <0 || xCoord >= xLength || yCoord >= yLength )
 			return null;
-		if( board.getPlayerTurn() == 0)
+		if( player == 0)
 			return (grid[xCoord][yLength-yCoord-1]);
 		else
 			return (grid[xLength-xCoord-1][yCoord]);
@@ -103,10 +108,9 @@ public class BoardPanel extends JPanel {
 		graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		super.paintComponent(graphics2D);
 		//draw grid
-		int playerTurn= board.getPlayerTurn();
 		for (int xIndex=0; xIndex< xLength ; xIndex++) {
 			for (int yIndex=0; yIndex < yLength; yIndex++) {
-				grid[xIndex][yIndex].drawCell(graphics2D, playerTurn);
+				grid[xIndex][yIndex].drawCell(graphics2D, player);
 			}
 		}
 	}
