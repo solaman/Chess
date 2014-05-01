@@ -16,13 +16,19 @@ import com.sun.net.httpserver.HttpServer;
 
 /**
  * @author Solaman
- * fields communication to the server. Responsible for sending Commands with the correct format, as well as interpreting
- * commands sent as a response to the server.
+ * fields communication as a server. Responsible for sending Commands with the correct format, as well as interpreting
+ * commands sent to the server.
  */
 public class CommandServer {
 	
+	/**
+	 *  CommandHandler used to manage commands made by all components of the board
+	 */
 	public CommandHandler commandHandler;
 	
+	/**
+	 * @throws IOException -error occurred while creating the CommandHandler
+	 */
 	public CommandServer() throws IOException { 
 		commandHandler= new CommandHandler();
 	    
@@ -38,8 +44,7 @@ public class CommandServer {
 
 	/**
 	 * @author Solaman
-	 * upon request, perform the received command on the board,
-	 * and return a command made by the user, will stall if no command is available
+	 * used to handle requests made to the server
 	 */
 	class requestHandler implements HttpHandler {
 		CommandServer client;
@@ -49,6 +54,10 @@ public class CommandServer {
 			this.client= client;
 		}
 		
+		/**
+		 * upon request, perform the received command on the board,
+		 * and return a command made by the user, waiting if no command is available at the time
+		 */
 		public void handle(HttpExchange exchange) throws IOException {
 		    String requestMethod = exchange.getRequestMethod();
 		    if (requestMethod.equalsIgnoreCase("POST") && 
