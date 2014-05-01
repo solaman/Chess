@@ -42,7 +42,8 @@ public class LiftPlaceCommand {
 	}
 	
 	public void undoPlace(ChessBoard board){
-		board.liftPiece(space);
+		if(space != null)
+			board.liftPiece(space);
 	}
 
 	/**
