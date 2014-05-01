@@ -43,7 +43,7 @@ public class CustomGame extends ChessGame {
 	 * used to designate how the board is made,
 	 * this should be easily grabbed from a file
 	 */
-	JSONObject bluePrint;
+	public JSONObject bluePrint;
 	
 	/**
 	 * pieces for player 0
@@ -63,6 +63,16 @@ public class CustomGame extends ChessGame {
 		} catch (IOException | JSONException e) {}
 	}
 	
+	public CustomGame(JSONObject bluePrint){
+		this.bluePrint= bluePrint;
+		try {
+			this.name= bluePrint.getString("name");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * builds relevant data to perform the setUp of a game saved to the given file
 	 * @param filePath -path to game file
@@ -75,6 +85,7 @@ public class CustomGame extends ChessGame {
 		
 		this.name= bluePrint.getString("name");
 	}
+	
 	
 	/**
 	 * saves file in the format required to be able to load the file

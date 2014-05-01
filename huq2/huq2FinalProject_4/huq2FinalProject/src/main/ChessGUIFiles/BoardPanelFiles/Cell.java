@@ -142,18 +142,18 @@ public class Cell {
 	/**
 	 * Draws Chess Space that the cell refers to
 	 * @param g2 graphic to draw cell in
-	 * @param playerTurn TODO
+	 * @param player TODO
 	 */
-	public void drawCell(Graphics2D g2, int playerTurn) {
+	public void drawCell(Graphics2D g2, int player) {
 		g2.setColor(currentColor);
-		if(playerTurn== 0)
+		if(player== 0)
 			g2.fillPolygon(cellShape);
 		else
 			g2.fillPolygon(reverseShape);
 		setColor( defaultColor);
 		
 		g2.setColor( OUTLINECOLOR);
-		if(playerTurn == 0){
+		if(player == 0){
 			g2.drawPolygon( cellShape);
 			fillCell(g2, xCoord, yCoord);
 		}else
