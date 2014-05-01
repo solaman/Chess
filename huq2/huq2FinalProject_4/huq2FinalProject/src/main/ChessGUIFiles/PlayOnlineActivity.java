@@ -32,11 +32,13 @@ public class PlayOnlineActivity extends JPanel {
 	JFrame frame;
 	CommandServer toServe;
 	CommandClient toCli;
+	public static boolean created=false;
 	
 	public PlayOnlineActivity(JFrame frame) {
+		if(created)
+			return;
 		this.frame= frame;
 		frame.getContentPane().removeAll();
-		
 		try {
 			toServe= new CommandServer();
 			buildOnlineGameMenu( toServe.commandHandler );
@@ -78,10 +80,13 @@ public class PlayOnlineActivity extends JPanel {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			if(created)
+				return;
 			commandhandler.chooseGame(this);
 		}
 		
 		public BoardPanel startGame(){
+			created=true;
 			ChessBoard board= game.setUp();
 			BoardPanel panel= board.getRepresentation();
 			new OnlinePlayMouseAdapter( panel, 1, commandhandler);
