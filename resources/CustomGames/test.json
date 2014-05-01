@@ -1,0 +1,30 @@
+{
+   "pieces": [
+      {
+         "xCoord": 1,
+         "player": 0,
+         "yCoord": 0,
+         "className": "main.chessPieces.King"
+      },
+      {
+         "xCoord": 1,
+         "player": 1,
+         "yCoord": 4,
+         "className": "main.chessPieces.King"
+      }
+   ],
+   "pieceTypes": {
+      "main.chessPieces.Rook": [],
+      "main.chessPieces.Knight": [],
+      "main.chessPieces.Queen": [],
+      "main.chessPieces.King": [],
+      "main.chessPieces.Pawn": [],
+      "main.chessPieces.Bishop": []
+   },
+   "name": "test",
+   "board": {
+      "xLength": 3,
+      "yLength": 6,
+      "className": "main.chessBoards.HexagonalBoard"
+   }
+}

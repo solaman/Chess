@@ -1,0 +1,37 @@
+{
+   "pieces": [
+      {
+         "xCoord": 0,
+         "player": 0,
+         "yCoord": 0,
+         "className": "main.chessPieces.Pawn"
+      },
+      {
+         "xCoord": 0,
+         "player": 1,
+         "yCoord": 2,
+         "className": "main.chessPieces.Pawn"
+      },
+      {
+         "xCoord": 1,
+         "player": 0,
+         "yCoord": 0,
+         "className": "main.chessPieces.Rook"
+      }
+   ],
+   "pieceTypes": {
+      "main.chessPieces.Rook": [
+         {"moveName": "main.chessMoves.RookBasic"}
+      ],
+      "main.chessPieces.Pawn":[
+            {"moveName": "main.chessMoves.pawnMoves.PawnBasic"},
+            {"moveName": "main.chessMoves.pawnMoves.PawnFirstMove"}
+      ]
+   },
+   "name": "Test",
+   "board": {
+      "xLength": 3,
+      "yLength": 3,
+      "className": "main.ChessBoard"
+   }
+}
