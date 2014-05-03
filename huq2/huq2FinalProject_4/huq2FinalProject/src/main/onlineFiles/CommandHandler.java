@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import main.ChessBoard;
 import main.ChessGUIFiles.MouseAdapters.OnlinePlayMouseAdapter;
+import main.ChessGUIFiles.PlayOnlineActivity;
 import main.ChessGUIFiles.PlayOnlineActivity.StartOnlineGameAction;
 import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
 import main.chessGames.CustomGame;
@@ -137,6 +138,11 @@ public class CommandHandler {
 			}
 		}
 		
+		/**
+		 * mainly used by a CommandClient, starts the game described as a JSON
+		 * @param gameJSON -JSONObject describing game
+		 * @return board panel that contains the ChessBoard view and references ChessBoard model
+		 */
 		private BoardPanel startGame(JSONObject gameJSON){
 			ChessBoard board;
 			try {
@@ -153,6 +159,7 @@ public class CommandHandler {
 				BoardPanel panel= board.getRepresentation();
 				panel.player= 0;
 				new OnlinePlayMouseAdapter( panel, 0, this);
+				PlayOnlineActivity.created=true;
 				
 				frame.getContentPane().removeAll();
 				frame.getContentPane().add( panel, BorderLayout.CENTER);
