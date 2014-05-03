@@ -56,6 +56,11 @@ public class ChessMenu {
     	
     }
     
+    /**
+     * build and add the PlayOnline menu for menu
+     * @param frame -frame to build the menu in
+     * @param menuBar2 -menubar to add the playOnline menu to
+     */
     private static void addPlayOnlineMenu(JFrame frame, JMenuBar menuBar2) {
 		JMenu playOnlineMenu= new JMenu("play online");
 		JMenuItem play= new JMenuItem("play");
@@ -65,6 +70,10 @@ public class ChessMenu {
 		
 	}
     
+    /**
+     * @author Solaman
+     * action listener to start the play online activity
+     */
     private static class PlayOnlineAction implements ActionListener{
     	JFrame frame;
     	
@@ -79,11 +88,20 @@ public class ChessMenu {
 		}
     }
 
+	/**
+	 * restart the menuBar, used mostly by CreateGameMenu to
+	 * add the created game menu to the list of games to play
+	 */
 	public static void restartMenu(){
     	Thisframe.setJMenuBar(null);
     	buildMenu(Thisframe);
     }
     
+    /**
+     * create the menu for created a new game
+     * @param frame -frame to build the createActivity in
+     * @param menuBar -menuBar to add the menu to
+     */
     private static void addCreateGameMenu(JFrame frame, JMenuBar menuBar){
     	JMenu createGameMenu= new JMenu("create new game");
     	JMenuItem create= new JMenuItem("create");
@@ -92,6 +110,10 @@ public class ChessMenu {
     	menuBar.add( createGameMenu);
     }
     
+    /**
+     * @author Solaman
+     *  action that starts the createGame Activity
+     */
     private static class CreateGameAction implements ActionListener{
 
     	JFrame frame;
@@ -107,6 +129,11 @@ public class ChessMenu {
     	
     }
     
+    /**
+     * create the menu to start a new game
+     * @param frame -frame to build the game
+     * @param menuBar -menuBar to add the menu to
+     */
     public static void addStartGameMenu(JFrame frame, JMenuBar menuBar){
     	JMenu newGameMenu= new JMenu("start new Game");
     	menuBar.add(newGameMenu);
@@ -121,6 +148,9 @@ public class ChessMenu {
     	
     }
     
+    /**
+     * @return list of games to play
+     */
     public static List<ChessGame> getGamesToPlay(){
     	List<ChessGame> gamesToStart= new ArrayList<ChessGame>();
     	gamesToStart.add( new GlinskisChess());
@@ -137,6 +167,10 @@ public class ChessMenu {
     	return gamesToStart;
     }
     
+    /**
+     * @author Solaman
+     * action listener to start the game
+     */
     public static class StartGameAction implements ActionListener{
     	
 		JFrame frameToDisplayGame;
