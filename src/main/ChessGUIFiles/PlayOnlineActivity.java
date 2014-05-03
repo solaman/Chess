@@ -23,14 +23,35 @@ import main.onlineFiles.CommandClient;
 import main.onlineFiles.CommandHandler;
 import main.onlineFiles.CommandServer;
 
+/**
+ * @author Solaman
+ * "activity" used to start a chess game online. used mostly by the CommandServer
+ */
 @SuppressWarnings("serial")
 public class PlayOnlineActivity extends JPanel {
 
+	/**
+	 * frame that the boardPanel is built in
+	 */
 	JFrame frame;
+	
+	/**
+	 * Server to build if no one has hooked up the local port
+	 */
 	CommandServer toServe;
+	
+	/**
+	 * Client to build if someone has already hooked up to the local port
+	 */
 	CommandClient toCli;
 	public static boolean created=false;
 	
+	/**
+	 * does nothing if it has already been instantiated, tries to build a CommandServer if
+	 * no-one hooked up to the local port used for online play, else
+	 * starts a CommandClient
+	 * @param frame frame to build the game inside
+	 */
 	public PlayOnlineActivity(JFrame frame) {
 		if(created)
 			return;
@@ -48,6 +69,11 @@ public class PlayOnlineActivity extends JPanel {
 		}
 	}
 	
+	/**
+	 * if the CommandServer is started, the player with the CommandServer gets to
+	 * choose what game to play, this displays the games they get to start
+	 * @param handler
+	 */
 	private void buildOnlineGameMenu(CommandHandler handler){
 		setLayout(new GridLayout(7,0));
 		List<ChessGame> gamesToPlay= ChessMenu.getGamesToPlay();
@@ -62,12 +88,23 @@ public class PlayOnlineActivity extends JPanel {
 		
 	}
 
+	/**
+	 * @author Solaman
+	 * action associated with the game options, if the game is selected
+	 * then start the game and send a packet to the client, stalls if no client is available
+	 */
 	public class StartOnlineGameAction implements ActionListener{
 		
 		JFrame frame;
 		ChessGame game;
 		CommandHandler commandhandler;
 		
+		/**
+		 * @param frame -frame the game will be built in
+		 * @param game -game the StartOnlineGameAction is associated with
+		 * @param commandHandler commandHandler the CommandClient/CommandServer will use
+		 * to manage command passing
+		 */
 		public StartOnlineGameAction(JFrame frame, ChessGame game, CommandHandler commandHandler) {
 			this.frame= frame;
 			this.game= game;
@@ -80,6 +117,11 @@ public class PlayOnlineActivity extends JPanel {
 			commandhandler.chooseGame(this);
 		}
 		
+		/**
+		 * build the game once a request is sent and
+		 * a game is selected
+		 * @return panel that the game is started in
+		 */
 		public BoardPanel startGame(){
 			created=true;
 			ChessBoard board= game.setUp();
@@ -96,6 +138,11 @@ public class PlayOnlineActivity extends JPanel {
 	        return panel;
 		}
 		
+		/**
+		 * create JSON command to send to the client to start
+		 * the game the CommandServer started
+		 * @return JSONObject describing command
+		 */
 		private JSONObject createGameJSON(){
 			JSONObject gameJSON= new JSONObject();
 			try {
