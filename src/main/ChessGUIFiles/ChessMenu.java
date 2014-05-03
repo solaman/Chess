@@ -101,6 +101,7 @@ public class ChessMenu {
     	}
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			PlayOnlineActivity.created= false;
 			new CreateGameActivity( frame);
 		}	
     	
@@ -149,6 +150,7 @@ public class ChessMenu {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			PlayOnlineActivity.created= false;
 			ChessBoard board = gameToDisplay.setUp();
 			BoardPanel grid= board.getRepresentation();
 			new PlayMouseAdapter(grid);

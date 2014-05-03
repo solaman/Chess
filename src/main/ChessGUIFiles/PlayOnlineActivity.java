@@ -2,7 +2,6 @@ package main.ChessGUIFiles;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import org.json.JSONException;
@@ -19,14 +17,13 @@ import org.json.JSONObject;
 import main.ChessBoard;
 import main.ChessGame;
 import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
-import main.ChessGUIFiles.ChessMenu.StartGameAction;
 import main.ChessGUIFiles.MouseAdapters.OnlinePlayMouseAdapter;
-import main.ChessGUIFiles.MouseAdapters.PlayMouseAdapter;
 import main.chessGames.CustomGame;
 import main.onlineFiles.CommandClient;
 import main.onlineFiles.CommandHandler;
 import main.onlineFiles.CommandServer;
 
+@SuppressWarnings("serial")
 public class PlayOnlineActivity extends JPanel {
 
 	JFrame frame;
@@ -80,8 +77,6 @@ public class PlayOnlineActivity extends JPanel {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(created)
-				return;
 			commandhandler.chooseGame(this);
 		}
 		
