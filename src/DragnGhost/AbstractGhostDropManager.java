@@ -28,6 +28,7 @@ public abstract class AbstractGhostDropManager implements GhostDropListener {
 		return bounds.contains(point);
 	}
 
+	@Override
 	public void ghostDropped(GhostDropEvent e) {
 	}
 }

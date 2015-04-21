@@ -4,15 +4,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
+
 import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+
+import org.apache.commons.io.IOUtils;
+import org.json.*;
 
 /**
  * @author Solaman
@@ -58,6 +59,7 @@ public class CommandServer {
 		 * upon request, perform the received command on the board,
 		 * and return a command made by the user, waiting if no command is available at the time
 		 */
+		@Override
 		public void handle(HttpExchange exchange) throws IOException {
 		    String requestMethod = exchange.getRequestMethod();
 		    if (requestMethod.equalsIgnoreCase("POST") && 

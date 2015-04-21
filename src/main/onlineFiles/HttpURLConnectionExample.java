@@ -9,14 +9,14 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
+
+import org.json.*;
  
 
 import java.net.URLConnection;
 import java.net.UnknownHostException;
 
 import javax.net.ssl.HttpsURLConnection;
-
-import org.json.JSONObject;
  
 public class HttpURLConnectionExample {
  

@@ -65,6 +65,7 @@ public class CreateMouseAdapter extends PlayMouseAdapter {
 	  * when a piece is found, draw its ghost image and store data to 
 	  * "drag" the piece
 	 */
+	@Override
 	public void mousePressed(MouseEvent e)
 	    {
 		 	setData(e);

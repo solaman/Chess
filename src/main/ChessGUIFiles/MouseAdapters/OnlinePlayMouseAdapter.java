@@ -2,7 +2,7 @@ package main.ChessGUIFiles.MouseAdapters;
 
 import java.awt.event.MouseEvent;
 
-import org.json.JSONObject;
+import org.json.*;
 
 import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
 import main.CommandFiles.CommandSequence;

@@ -35,6 +35,7 @@ public class ShafransChess extends ChessGame {
 		return null;
 	}
 	
+	@Override
 	public String getName(){
 		return NAME;
 	}

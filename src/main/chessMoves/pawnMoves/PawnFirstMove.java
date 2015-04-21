@@ -38,6 +38,7 @@ public class PawnFirstMove extends PawnMove {
 	 * because convention dictates that moves are separate from the game,
 	 * variants should be implemented in a subclass
 	 */
+	@Override
 	public void buildMoveData(HexagonalBoard board){}
 	
 	protected boolean canPerform(ChessBoard board){

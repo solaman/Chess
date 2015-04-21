@@ -30,6 +30,7 @@ public class RookBasic extends ChessMove {
 	/*
 	 * TODO requires Testing
 	 */
+	@Override
 	public void buildMoveData(HexagonalBoard board){
 		buildMoveDataVector(board, 1, 1, -2);
 		buildMoveDataVector(board, 1, -1, -2);

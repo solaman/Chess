@@ -1,13 +1,9 @@
 package DragnGhost;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Toolkit;
-
-import java.net.URL;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public final class UIHelper
 {
@@ -48,7 +44,7 @@ public final class UIHelper
     public static JLabel createLabel(String text, String icon)
     {
         ImageIcon iconNormal = readImageIcon(icon + ".png");
-        JLabel label = new JLabel(text, iconNormal, JLabel.LEFT);
+        JLabel label = new JLabel(text, iconNormal, SwingConstants.LEFT);
         return label;
     }
 

@@ -1,5 +1,6 @@
 package main.ChessGUIFiles;
 
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -24,7 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import org.json.JSONException;
+import org.json.*;
 
 import main.ChessBoard;
 import main.ChessPiece;

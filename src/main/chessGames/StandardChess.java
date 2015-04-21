@@ -38,6 +38,7 @@ public class StandardChess extends ChessGame {
 		
 	}
 	
+	@Override
 	public String getName(){
 		return NAME;
 	}

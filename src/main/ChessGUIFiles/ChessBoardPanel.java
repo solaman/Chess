@@ -16,7 +16,6 @@ import main.ChessBoard;
 import main.ChessPiece;
 import main.ChessSpace;
 import main.CommandFiles.CommandSequence;
-import main.chessBoards.HexagonalBoard;
 
 /**
  * used to define a JPanel for a ChessBoard 
@@ -83,6 +82,7 @@ public class ChessBoardPanel extends JPanel {
 	
 	public class ChessMouseListener extends MouseAdapter {
 		
+		@Override
 		public void mouseMoved( MouseEvent e){
 			if(activePiece != null)
 				return;
@@ -103,6 +103,7 @@ public class ChessBoardPanel extends JPanel {
 			repaint();
 			
 		}
+		@Override
 		public void mouseClicked(MouseEvent e) { 
 			BoardCell clickedCell= cellFromMouseEvent(e);
 			

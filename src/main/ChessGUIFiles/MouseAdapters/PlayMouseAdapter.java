@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import main.ChessBoard;
 import main.ChessPiece;
 import main.ChessSpace;
-import main.ChessGUIFiles.UndoTurnsConfirmPanel;
 import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
 import main.ChessGUIFiles.BoardPanelFiles.Cell;
 import main.CommandFiles.CommandSequence;
@@ -64,6 +63,7 @@ public class PlayMouseAdapter extends MouseAdapter {
 			}
 		}
 
+		@Override
 		public void mouseMoved( MouseEvent e){
 			if(activePiece != null)
 				return;
@@ -85,6 +85,7 @@ public class PlayMouseAdapter extends MouseAdapter {
 			
 		}
 		
+		@Override
 		public void mouseClicked(MouseEvent e) { 
 			Cell clickedCell= panel.cellFromMouseEvent(e);
 			

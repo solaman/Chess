@@ -1,7 +1,5 @@
 package DragnGhost;
 import java.awt.*;
-import java.awt.image.*;
-import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
@@ -20,9 +18,12 @@ public class DragnGhostDemo extends JFrame
 
         TableModel dataModel = new AbstractTableModel()
         {
-            public int getColumnCount() { return 10; }
-            public int getRowCount() { return 10;}
-            public Object getValueAt(int row, int col) { return new Integer((row + 1) * (col + 1)); }
+            @Override
+			public int getColumnCount() { return 10; }
+            @Override
+			public int getRowCount() { return 10;}
+            @Override
+			public Object getValueAt(int row, int col) { return new Integer((row + 1) * (col + 1)); }
         };
         JTable table = new JTable(dataModel);
 
@@ -77,7 +78,7 @@ public class DragnGhostDemo extends JFrame
         JPanel headerPanel = new JPanel(new BorderLayout());
         HeaderPanel header = new HeaderPanel();
         headerPanel.add(BorderLayout.NORTH, header);
-        headerPanel.add(BorderLayout.SOUTH, new JSeparator(JSeparator.HORIZONTAL));
+        headerPanel.add(BorderLayout.SOUTH, new JSeparator(SwingConstants.HORIZONTAL));
         headerPanel.setBorder(new EmptyBorder(0, 0, 6, 0));
         c.add(BorderLayout.NORTH, headerPanel);
 

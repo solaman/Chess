@@ -35,6 +35,7 @@ public final class KnightBasic extends ChessMove {
 	/*
 	 * TODO should be tested
 	 */
+	@Override
 	public void buildMoveData(HexagonalBoard board){
 		buildMoveDataVector(board, 1, 2, 1);
 		buildMoveDataVector(board, -1, 2, 1);
