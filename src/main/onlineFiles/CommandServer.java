@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 
-import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
+import main.chessGUI.boardPanels.BoardPanel;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;

@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import main.CommandFiles.CommandSequence;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.pawnMoves.firstMoves.PawnFirstMoveShafrans;
-import main.chessPieces.Pawn;
+import main.boards.HexagonalBoard;
+import main.moveHistory.MoveSequence;
+import main.movePatterns.pawnMoves.firstMovePatterns.PawnFirstMoveShafrans;
+import main.pieces.Pawn;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class PawnFirstMoveShafransTest {
 	public void test() {
 		board.placePiece(pawn, 4, 2);
 		pfmS.buildMoveData(board);
-		List<CommandSequence> commList= pfmS.getCommandSequences(board);
+		List<MoveSequence> commList= pfmS.getCommandSequences(board);
 		assertTrue(commList.size() == 2);
 		assertTrue(FindSpace.doIt(commList, board.getChessSpace(4,6)));
 		assertTrue(FindSpace.doIt(commList, board.getChessSpace(4,8)));

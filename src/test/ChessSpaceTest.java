@@ -1,9 +1,9 @@
 package test;
 
 import static org.junit.Assert.*;
-import main.ChessMove;
-import main.ChessPiece;
-import main.ChessSpace;
+import main.boards.ChessSpace;
+import main.movePatterns.MovePattern;
+import main.pieces.ChessPiece;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +13,8 @@ public class ChessSpaceTest {
 	
 	ChessSpace space;
 	ChessPiece piece;
-	ChessMove move;
-	ChessMove move2;
+	MovePattern move;
+	MovePattern move2;
 	
 
 	@Before

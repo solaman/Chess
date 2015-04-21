@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import org.apache.commons.io.IOUtils;
 import org.json.*;
 
-import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
+import main.chessGUI.boardPanels.BoardPanel;
 
 /**
  * @author Solaman

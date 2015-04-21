@@ -1,11 +1,11 @@
 package test.ChessMoves.PawnMoves;
 
 import static org.junit.Assert.*;
-import main.ChessBoard;
-import main.ChessGame;
-import main.ChessPiece;
-import main.ChessSpace;
-import main.chessMoves.pawnMoves.PawnFirstMove;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.games.ChessGame;
+import main.movePatterns.pawnMovePatterns.PawnFirstMove;
+import main.pieces.ChessPiece;
 
 import org.junit.Before;
 import org.junit.Test;

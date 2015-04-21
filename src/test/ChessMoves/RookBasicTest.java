@@ -5,11 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import main.ChessBoard;
-import main.ChessPiece;
-import main.ChessSpace;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.RookBasic;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.movePatterns.RookMovePattern;
+import main.pieces.ChessPiece;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class RookBasicTest {
 
 	ChessBoard board;
 	ChessPiece rook;
-	RookBasic rookMove;
+	RookMovePattern rookMove;
 	
 	ChessSpace current;
 	List<ChessSpace> toMove;
@@ -31,7 +31,7 @@ public class RookBasicTest {
 		
 		current.setOccupant(rook);	
 		
-		rookMove=new RookBasic(rook);
+		rookMove=new RookMovePattern(rook);
 		rook.setPosition( board.getChessSpace(2,2));
 		rookMove.buildMoveData(board);
 	}

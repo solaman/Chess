@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import main.chessBoards.HexagonalBoard;
+import main.boards.HexagonalBoard;
 
 public class HexagonalBoardTest {
 

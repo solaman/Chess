@@ -11,15 +11,15 @@ import javax.swing.JFrame;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import main.ChessBoard;
-import main.ChessGUIFiles.MouseAdapters.OnlinePlayMouseAdapter;
-import main.ChessGUIFiles.PlayOnlineActivity;
-import main.ChessGUIFiles.PlayOnlineActivity.StartOnlineGameAction;
-import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
-import main.chessGames.CustomGame;
-import main.chessGames.GlinskisChess;
-import main.chessGames.ShafransChess;
-import main.chessGames.StandardChess;
+import main.boards.ChessBoard;
+import main.chessGUI.PlayOnlineActivity;
+import main.chessGUI.PlayOnlineActivity.StartOnlineGameAction;
+import main.chessGUI.boardPanels.BoardPanel;
+import main.chessGUI.mouseAdapters.OnlinePlayMouseAdapter;
+import main.games.CustomGame;
+import main.games.GlinskisChess;
+import main.games.ShafransChess;
+import main.games.StandardChess;
 
 /**
  * @author Solaman

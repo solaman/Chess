@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import main.ChessBoard;
-import main.ChessPiece;
-import main.ChessSpace;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.KingBasic;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.movePatterns.KingMovePattern;
+import main.pieces.ChessPiece;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,14 +17,14 @@ public class KingBasicTest {
 
 	ChessBoard board;
 	ChessPiece king;
-	KingBasic kingmove;
+	KingMovePattern kingmove;
 	
 	List<ChessSpace> toMove;
 	@Before
 	public void setUp() throws Exception {
 		board= new ChessBoard( 5,5);
 		king= new ChessPiece(1);
-		kingmove= new KingBasic(king);
+		kingmove= new KingMovePattern(king);
 		
 		board.getChessSpace(2,2).setOccupant( king);	
 		

@@ -1,12 +1,12 @@
 package test.ChessMoves.PawnMoves;
 
 import static org.junit.Assert.*;
-import main.ChessSpace;
-import main.CommandFiles.CommandSequence;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.pawnMoves.PawnEnPassantMcCooeys;
-import main.chessMoves.pawnMoves.PawnFirstMove;
-import main.chessPieces.Pawn;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.moveHistory.MoveSequence;
+import main.movePatterns.pawnMovePatterns.PawnEnPassantMcCooeys;
+import main.movePatterns.pawnMovePatterns.PawnFirstMove;
+import main.pieces.Pawn;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class PawnEnPassantMcCooeysTest {
 		board.placePiece(pawn, 2, 2);
 		board.placePiece(pawnMisunderstood, 3, 1);
 		ChessSpace space= board.getChessSpace(3,1);
-		CommandSequence dummy= new CommandSequence( pawnMisunderstood, new PawnFirstMove(pawnMisunderstood), space, space, null);
+		MoveSequence dummy= new MoveSequence( pawnMisunderstood, new PawnFirstMove(pawnMisunderstood), space, space, null);
 		board.getCommandHistory().add(dummy);
 		pepMC.buildMoveData(board);
 		assertTrue( FindSpace.doIt(pepMC.getCommandSequences(board), space ) );

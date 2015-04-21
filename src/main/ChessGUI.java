@@ -1,7 +1,7 @@
 package main;
 import javax.swing.*;
 
-import main.ChessGUIFiles.ChessMenu;
+import main.chessGUI.ChessMenu;
 
 
 /**

@@ -2,8 +2,8 @@ package test.ChessMoves;
 
 import java.util.List;
 
-import main.ChessSpace;
-import main.CommandFiles.CommandSequence;
+import main.boards.ChessSpace;
+import main.moveHistory.MoveSequence;
 
 public class FindSpace {
 
@@ -14,8 +14,8 @@ public class FindSpace {
 		 * @param toFind -space to find
 		 * @return did we find it?
 		 */
-		public static boolean doIt(List<CommandSequence> cs, ChessSpace toFind){
-			for(CommandSequence commandSequence : cs)
+		public static boolean doIt(List<MoveSequence> cs, ChessSpace toFind){
+			for(MoveSequence commandSequence : cs)
 				if(toFind == commandSequence.getTargetSpace())
 						return true;
 			return false;

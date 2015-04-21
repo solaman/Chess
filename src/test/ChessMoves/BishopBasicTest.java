@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import main.ChessBoard;
-import main.ChessPiece;
-import main.ChessSpace;
-import main.CommandFiles.CommandSequence;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.BishopBasic;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.moveHistory.MoveSequence;
+import main.movePatterns.BishopMovePattern;
+import main.pieces.ChessPiece;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +21,8 @@ public class BishopBasicTest {
 	ChessPiece friend;
 	ChessPiece enemy1;
 	ChessPiece enemy2;
-	BishopBasic bishopMove;
-	List< CommandSequence> cs;
+	BishopMovePattern bishopMove;
+	List< MoveSequence> cs;
 	
 	ChessSpace current;
 	List<ChessSpace> toMove;
@@ -33,7 +33,7 @@ public class BishopBasicTest {
 		current=board.getChessSpace(2,2);
 		
 		bishop=new ChessPiece(1);
-		bishopMove=new BishopBasic(bishop);
+		bishopMove=new BishopMovePattern(bishop);
 		current.setOccupant(bishop);
 		int[] s= {2,2};
 		bishop.setPosition(board.getChessSpace(s));

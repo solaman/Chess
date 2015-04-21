@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import main.ChessBoard;
-import main.ChessPiece;
-import main.ChessSpace;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.KnightBasic;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.movePatterns.KnightMovePattern;
+import main.pieces.ChessPiece;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class KnightBasicTest {
 
 	ChessBoard board;
 	ChessPiece knight;
-	KnightBasic knightMove;
+	KnightMovePattern knightMove;
 	
 	ChessSpace current;
 	List<ChessSpace> toMove;
@@ -30,7 +30,7 @@ public class KnightBasicTest {
 		
 		current.setOccupant(knight);	
 		
-		knightMove=new KnightBasic(knight);
+		knightMove=new KnightMovePattern(knight);
 		knight.setPosition(board.getChessSpace(2,2));
 		knightMove.buildMoveData(board);
 	}

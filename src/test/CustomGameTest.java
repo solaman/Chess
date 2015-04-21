@@ -7,15 +7,15 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import main.ChessBoard;
-import main.ChessMove;
-import main.ChessPiece;
-import main.chessGames.CustomGame;
-import main.chessMoves.RookBasic;
-import main.chessMoves.pawnMoves.PawnBasic;
-import main.chessMoves.pawnMoves.PawnFirstMove;
-import main.chessPieces.Pawn;
-import main.chessPieces.Rook;
+import main.boards.ChessBoard;
+import main.games.CustomGame;
+import main.movePatterns.MovePattern;
+import main.movePatterns.RookMovePattern;
+import main.movePatterns.pawnMovePatterns.PawnBasic;
+import main.movePatterns.pawnMovePatterns.PawnFirstMove;
+import main.pieces.ChessPiece;
+import main.pieces.Pawn;
+import main.pieces.Rook;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -67,21 +67,21 @@ public class CustomGameTest {
 		for(ChessPiece piece : board.pieces.get(0) ){
 			if(piece instanceof Pawn){
 				boolean hasMoveType=false;
-				for(ChessMove move: piece.getMoves())
+				for(MovePattern move: piece.getMoves())
 					if(move instanceof PawnFirstMove)
 						hasMoveType= true;
 				assertTrue(hasMoveType);
 					
 				hasMoveType=false;
-				for(ChessMove move: piece.getMoves())
+				for(MovePattern move: piece.getMoves())
 					if(move instanceof PawnBasic)
 						hasMoveType= true;
 				assertTrue(hasMoveType);
 			}
 			else if(piece instanceof Rook){
 				boolean hasMoveType= false;
-				for(ChessMove move: piece.getMoves())
-					if(move instanceof RookBasic)
+				for(MovePattern move: piece.getMoves())
+					if(move instanceof RookMovePattern)
 						hasMoveType= true;
 				assertTrue(hasMoveType);
 			}

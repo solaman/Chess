@@ -5,14 +5,14 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.ChessPiece;
-import main.ChessSpace;
-import main.CommandFiles.CommandSequence;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.pawnMoves.PawnBasic;
-import main.chessMoves.pawnMoves.PawnCapture;
-import main.chessMoves.pawnMoves.firstMoves.PawnFirstMoveGlinskis;
-import main.chessPieces.Pawn;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.moveHistory.MoveSequence;
+import main.movePatterns.pawnMovePatterns.PawnBasic;
+import main.movePatterns.pawnMovePatterns.PawnCapture;
+import main.movePatterns.pawnMoves.firstMovePatterns.PawnFirstMoveGlinskis;
+import main.pieces.ChessPiece;
+import main.pieces.Pawn;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,7 +48,7 @@ public class PawnFirstMoveGlinskisTest {
 		ChessSpace pawnSpace= board.getChessSpace(2,0);
 		board.placePiece(pawn, pawnSpace);
 		pfmG.initializeMoveData( board);
-		List<CommandSequence > comm= pfmG.getCommandSequences(board);
+		List<MoveSequence > comm= pfmG.getCommandSequences(board);
 		assertTrue( comm.size()== 1);
 		assertTrue( FindSpace.doIt( pfmG.getCommandSequences(board), board.getChessSpace(2, 4)));
 	}
@@ -66,17 +66,17 @@ public class PawnFirstMoveGlinskisTest {
 		pfmG.initializeMoveData( board);
 		
 		board.placePiece(pawn, friendSpace);
-		CommandSequence capture= new CommandSequence(pawn, new PawnCapture(pawn), pawnSpace, pawnSpace, null);
+		MoveSequence capture= new MoveSequence(pawn, new PawnCapture(pawn), pawnSpace, pawnSpace, null);
 		board.getCommandHistory().add(capture);
 		
 		pfmG.clearMoveData(board);
 		pfmG.buildMoveData(board);
 		
-		List<CommandSequence > comm= pfmG.getCommandSequences(board);
+		List<MoveSequence > comm= pfmG.getCommandSequences(board);
 		assertTrue( comm.size()== 1);
 		assertTrue( FindSpace.doIt( pfmG.getCommandSequences(board), board.getChessSpace(3, 5)));
 		
-		CommandSequence notCapture= new CommandSequence(pawn, new PawnBasic(pawn), pawnSpace, pawnSpace, null);
+		MoveSequence notCapture= new MoveSequence(pawn, new PawnBasic(pawn), pawnSpace, pawnSpace, null);
 		board.getCommandHistory().add(notCapture);
 		pfmG.clearMoveData(board);
 		pfmG.buildMoveData(board);

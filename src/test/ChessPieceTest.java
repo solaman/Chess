@@ -1,9 +1,9 @@
 package test;
 
 import static org.junit.Assert.*;
-import main.ChessBoard;
-import main.ChessGame;
-import main.ChessPiece;
+import main.boards.ChessBoard;
+import main.games.ChessGame;
+import main.pieces.ChessPiece;
 
 import org.junit.Before;
 import org.junit.Test;

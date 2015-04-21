@@ -1,13 +1,12 @@
 package test;
 
 import static org.junit.Assert.*;
-
-import main.ChessBoard;
-import main.ChessSpace;
-import main.chessGames.StandardChess;
-import main.chessMoves.RookBasic;
-import main.chessPieces.King;
-import main.chessPieces.Rook;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.games.StandardChess;
+import main.movePatterns.RookMovePattern;
+import main.pieces.King;
+import main.pieces.Rook;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +55,7 @@ public class ChessBoardTest {
 	public void testCanThreatenTrue(){
 		king.setPosition(board.getChessSpace(0,0));
 		rook1.setPosition(board.getChessSpace(1,0));
-		RookBasic rookMove= new RookBasic(rook1);
+		RookMovePattern rookMove= new RookMovePattern(rook1);
 		rook1.addMoves(rookMove);
 		rookMove.buildMoveData(board);
 		assertTrue(board.canThreaten(king, king.getPosition()));
@@ -70,7 +69,7 @@ public class ChessBoardTest {
 	public void testCanThreatenFalse(){
 		king.setPosition(board.getChessSpace(0,0));
 		rook1.setPosition(board.getChessSpace(1,1));
-		RookBasic rookMove= new RookBasic(rook1);
+		RookMovePattern rookMove= new RookMovePattern(rook1);
 		rook1.addMoves(rookMove);
 		rookMove.buildMoveData(board);
 		assertFalse(board.canThreaten(king, king.getPosition()));

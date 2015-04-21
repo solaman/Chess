@@ -7,9 +7,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.pawnMoves.PawnCaptureMcCooeys;
-import main.chessPieces.Pawn;
+import main.boards.HexagonalBoard;
+import main.movePatterns.pawnMovePatterns.PawnCaptureMcCooeys;
+import main.pieces.Pawn;
 
 public class PawnCaptureMcCooeysTest {
 

@@ -1,13 +1,13 @@
 package test.ChessMoves.PawnMoves;
 
 import static org.junit.Assert.*;
-import main.ChessBoard;
-import main.ChessSpace;
-import main.CommandFiles.CommandSequence;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.pawnMoves.PawnEnPassant;
-import main.chessMoves.pawnMoves.PawnFirstMove;
-import main.chessPieces.Pawn;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.moveHistory.MoveSequence;
+import main.movePatterns.pawnMovePatterns.PawnEnPassant;
+import main.movePatterns.pawnMovePatterns.PawnFirstMove;
+import main.pieces.Pawn;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -68,7 +68,7 @@ public class PawnEnPassantTest {
 		board.getChessSpace(1,2).setOccupant(null);
 		target.setOccupant(pawnEvil);
 		pawnEvil.setPosition( target);
-		CommandSequence com= new CommandSequence(pawnEvil, new PawnFirstMove(pawnEvil), target, board.getChessSpace(1,2), target );
+		MoveSequence com= new MoveSequence(pawnEvil, new PawnFirstMove(pawnEvil), target, board.getChessSpace(1,2), target );
 		board.getCommandHistory().add(com);
 		pep.clearMoveData(board);
 		pep.buildMoveData(board);
@@ -85,7 +85,7 @@ public class PawnEnPassantTest {
 		board.getChessSpace(0,0).setOccupant(null);
 		target.setOccupant(pawn);
 		pawn.setPosition(target);
-		CommandSequence com= new CommandSequence(pawn, new PawnFirstMove(pawn), target, board.getChessSpace(0,0), target );
+		MoveSequence com= new MoveSequence(pawn, new PawnFirstMove(pawn), target, board.getChessSpace(0,0), target );
 		board.getCommandHistory().add(com);
 		pepe.clearMoveData(board);
 		pepe.buildMoveData(board);
@@ -103,7 +103,7 @@ public class PawnEnPassantTest {
 		board.getChessSpace(1,2).setOccupant(null);
 		target.setOccupant(pawnEvil);
 		pawnEvil.setPosition( target);
-		CommandSequence com= new CommandSequence(pawnEvil, new PawnFirstMove(pawnEvil), target, board.getChessSpace(1,2), target );
+		MoveSequence com= new MoveSequence(pawnEvil, new PawnFirstMove(pawnEvil), target, board.getChessSpace(1,2), target );
 		board.getCommandHistory().add(com);
 		pep.clearMoveData(board);
 		pep.buildMoveData(board);
@@ -122,13 +122,13 @@ public class PawnEnPassantTest {
 		board.getChessSpace(1,2).setOccupant(null);
 		board.getChessSpace(1,0).setOccupant(pawnEvil);
 		ChessSpace target= board.getChessSpace(1,0);
-		CommandSequence com= new CommandSequence(pawnEvil, new PawnFirstMove(pawnEvil), target, board.getChessSpace(1,2), target );
+		MoveSequence com= new MoveSequence(pawnEvil, new PawnFirstMove(pawnEvil), target, board.getChessSpace(1,2), target );
 		pawnEvil.setPosition( board.getChessSpace(1,0));
 		board.getCommandHistory().add(com);
 		pep.clearMoveData(board);
 		pep.buildMoveData(board);
 		assertTrue(FindSpace.doIt( pep.getCommandSequences(board) , board.getChessSpace(1,0)) );
-		CommandSequence fake= new CommandSequence(null, null, board.getChessSpace(0,0), board.getChessSpace(0,0), null);
+		MoveSequence fake= new MoveSequence(null, null, board.getChessSpace(0,0), board.getChessSpace(0,0), null);
 		board.getCommandHistory().add(fake);
 		pep.clearMoveData(board);
 		pep.buildMoveData(board);
@@ -140,7 +140,7 @@ public class PawnEnPassantTest {
 		HexagonalBoard hBoard= new HexagonalBoard(9,10);
 		hBoard.placePiece(pawn, 4, 2 );
 		hBoard.placePiece(pawnEvil, 5, 1);
-		CommandSequence com= new CommandSequence(pawnEvil, new PawnFirstMove(pawnEvil), null, board.getChessSpace(1,2), null );
+		MoveSequence com= new MoveSequence(pawnEvil, new PawnFirstMove(pawnEvil), null, board.getChessSpace(1,2), null );
 		hBoard.getCommandHistory().add(com);
 		pep.clearMoveData(board);
 		pep.buildMoveData(hBoard);

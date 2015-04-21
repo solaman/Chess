@@ -5,15 +5,15 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.ChessBoard;
-import main.ChessGame;
-import main.ChessPiece;
-import main.ChessSpace;
-import main.CommandFiles.CommandSequence;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.KingCastling;
-import main.chessMoves.RookBasic;
-import main.chessPieces.Rook;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.games.ChessGame;
+import main.moveHistory.MoveSequence;
+import main.movePatterns.CastlingMovePattern;
+import main.movePatterns.RookMovePattern;
+import main.pieces.ChessPiece;
+import main.pieces.Rook;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class KingCastlingTest {
 	Rook rook2;
 	ChessPiece king;
 	ChessGame game;
-	KingCastling kingMove;
+	CastlingMovePattern kingMove;
 	List<ChessPiece> p1Pieces;
 	
 	@Before
@@ -34,7 +34,7 @@ public class KingCastlingTest {
 		rook1 = new Rook(0);
 		rook2 = new Rook(0);
 		king= new ChessPiece(0);
-		kingMove=new KingCastling(king);
+		kingMove=new CastlingMovePattern(king);
 		
 		int[] s={4,0};
 		ChessSpace shuffle=board.getChessSpace(s);
@@ -107,7 +107,7 @@ public class KingCastlingTest {
 	@Test
 	public void testBuildPathDataInCheck(){
 		ChessPiece evilGhost=new ChessPiece(1);
-		RookBasic soEvil=new RookBasic(evilGhost);
+		RookMovePattern soEvil=new RookMovePattern(evilGhost);
 		board.getChessSpace(4,0).addDependentMove(soEvil);
 		assertFalse(FindSpace.doIt(kingMove.getCommandSequences(board), board.getChessSpace(4,0) ));
 	}
@@ -134,7 +134,7 @@ public class KingCastlingTest {
 		hBoard.placePiece(rook1, hBoard.getChessSpace(0, 4));
 		kingMove.clearMoveData(board);
 		kingMove.buildMoveData(hBoard);
-		List<CommandSequence> commList= kingMove.getCommandSequences(hBoard);
+		List<MoveSequence> commList= kingMove.getCommandSequences(hBoard);
 		assertTrue( commList.size() == 2);
 		assertTrue( FindSpace.doIt(commList, hBoard.getChessSpace(2, 2)));
 		assertTrue( FindSpace.doIt(commList, hBoard.getChessSpace(1, 3)));

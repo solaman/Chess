@@ -1,16 +1,16 @@
 package test.ChessMoves.PawnMoves;
 
 import static org.junit.Assert.*;
-import main.ChessBoard;
-import main.ChessPiece;
-import main.ChessSpace;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import test.ChessMoves.FindSpace;
-import main.chessBoards.HexagonalBoard;
-import main.chessMoves.pawnMoves.PawnBasic;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.boards.HexagonalBoard;
+import main.movePatterns.pawnMovePatterns.PawnBasic;
+import main.pieces.ChessPiece;
 
 public class PawnBasicTest {
 

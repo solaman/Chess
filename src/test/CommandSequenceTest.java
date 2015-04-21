@@ -8,15 +8,15 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import main.ChessBoard;
-import main.ChessSpace;
-import main.CommandFiles.CommandSequence;
-import main.chessGames.StandardChess;
-import main.chessMoves.RookBasic;
-import main.chessPieces.Pawn;
-import main.chessPieces.Rook;
-import org.json.*;
+import main.boards.ChessBoard;
+import main.boards.ChessSpace;
+import main.games.StandardChess;
+import main.moveHistory.MoveSequence;
+import main.movePatterns.RookMovePattern;
+import main.pieces.Pawn;
+import main.pieces.Rook;
 
+import org.json.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,9 +39,9 @@ public class CommandSequenceTest {
 	public void testJSONConstructor() throws JSONException, IOException, ClassNotFoundException {
 		String fileString= readFile("resources/TestResources/commandSequenceTest.json", StandardCharsets.UTF_8);
 		JSONObject commandObject = new JSONObject(fileString);
-		CommandSequence toTest= new CommandSequence(board, commandObject);
+		MoveSequence toTest= new MoveSequence(board, commandObject);
 		assertTrue( toTest.getPerformingPiece()== rook);
-		assertTrue(toTest.getMovePerformed() instanceof RookBasic);
+		assertTrue(toTest.getMovePerformed() instanceof RookMovePattern);
 		ChessSpace target= toTest.getTargetSpace();
 		assertTrue("target is "+ target.getXCoord()+","+target.getYCoord()+" should be 0,3",
 				toTest.getTargetSpace() == board.getChessSpace(0,3));
@@ -53,8 +53,8 @@ public class CommandSequenceTest {
 	@Test
 	public void testAsJSON() throws JSONException{
 		board.initializeMoves();
-		CommandSequence comm=null;
-		for( CommandSequence command: rook.getMoves().get(0).getCommandSequences(board))
+		MoveSequence comm=null;
+		for( MoveSequence command: rook.getMoves().get(0).getCommandSequences(board))
 			if( command.getTargetSpace() == board.getChessSpace(0, 3)){
 				comm= command;
 				break;
