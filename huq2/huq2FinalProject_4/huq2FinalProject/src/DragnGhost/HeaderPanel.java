@@ -53,7 +53,8 @@ public class HeaderPanel extends JPanel {
         setPreferredSize(new Dimension(500, this.icone.getIconHeight() + 24));
     }
 
-    public void paintComponent(Graphics g) {
+    @Override
+	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (!isOpaque()) {
             return;

@@ -29,7 +29,8 @@ public class GhostGlassPane extends JPanel
         this.location = location;
     }
 
-    public void paintComponent(Graphics g)
+    @Override
+	public void paintComponent(Graphics g)
     {
         if (dragged == null)
             return;

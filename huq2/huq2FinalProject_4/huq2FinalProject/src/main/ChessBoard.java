@@ -3,8 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 
 import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
 import main.CommandFiles.CommandHistory;

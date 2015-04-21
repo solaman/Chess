@@ -32,6 +32,7 @@ public class HexagonalCell extends Cell {
 		referenceCells= new ArrayList<HexagonalCell>();
 	}
 	
+	@Override
 	public void setSpaceReference(ChessSpace space){
 		spaceReference= space;
 	}
@@ -71,8 +72,8 @@ public class HexagonalCell extends Cell {
 	@Override
 	public void createCellShape(Color defaultColor, int sideLength, int xCoord, int yCoord){
 		this.sideLength= sideLength;
-		this.xCoord= (int) (xCoord* (double)(sideLength*BOXLENGTHRATIO) );
-		this.yCoord= (int) (yCoord*(double)(sideLength*BOXHEIGHTRATIO) );
+		this.xCoord= (int) (xCoord* (sideLength*BOXLENGTHRATIO) );
+		this.yCoord= (int) (yCoord*(sideLength*BOXHEIGHTRATIO) );
 		cellShape= createHexagon(this.xCoord, this.yCoord);
 		this.defaultColor= defaultColor;
 		this.currentColor= defaultColor;
@@ -80,8 +81,8 @@ public class HexagonalCell extends Cell {
 	
 	@Override
 	public void createReverseShape(int xLength, int yLength){
-		xReverse= (int)((xLength-2)*(double)(sideLength*BOXLENGTHRATIO))-xCoord;
-		yReverse= (int)((yLength-2)*(double)(sideLength*BOXHEIGHTRATIO))-yCoord;
+		xReverse= (int)((xLength-2)*(sideLength*BOXLENGTHRATIO))-xCoord;
+		yReverse= (int)((yLength-2)*(sideLength*BOXHEIGHTRATIO))-yCoord;
 		reverseShape= createHexagon(xReverse, yReverse);
 	}
 	/**
@@ -95,7 +96,7 @@ public class HexagonalCell extends Cell {
 		Polygon hexagon= new Polygon();
 		hexagon.addPoint(xCoord1+(int)(.5*sideLength), yCoord1);
 		hexagon.addPoint(xCoord1+(int)(1.5*sideLength), yCoord1);
-		hexagon.addPoint(xCoord1+(int)(2*sideLength), yCoord1+(int)(sideLength*BOXHEIGHTRATIO));
+		hexagon.addPoint(xCoord1+2*sideLength, yCoord1+(int)(sideLength*BOXHEIGHTRATIO));
 		hexagon.addPoint(xCoord1+(int)(1.5*sideLength), yCoord1+(int)(sideLength*BOXHEIGHTRATIO*2));
 		hexagon.addPoint(xCoord1+(int)(.5*sideLength), yCoord1+(int)(sideLength*BOXHEIGHTRATIO*2));
 		hexagon.addPoint(xCoord1, yCoord1+(int)(sideLength*BOXHEIGHTRATIO));
@@ -135,7 +136,7 @@ public class HexagonalCell extends Cell {
 	public Image scaleOccupant(BufferedImage image) {
 
 	    double scaleFactor = Math.min(1d, getScaleFactorToFit(new Dimension(image.getWidth(), image.getHeight()),
-	    		new Dimension( (int)(sideLength), (int)(sideLength*BOXHEIGHTRATIO*2) )));
+	    		new Dimension( (sideLength), (int)(sideLength*BOXHEIGHTRATIO*2) )));
 
 	    int scaleWidth = (int) Math.round(image.getWidth() * scaleFactor);
 	    int scaleHeight = (int) Math.round(image.getHeight() * scaleFactor);

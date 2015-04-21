@@ -31,6 +31,7 @@ public final class KingBasic extends ChessMove {
 	/*
 	 * TODO requires testing
 	 */
+	@Override
 	public void buildMoveData(HexagonalBoard board){
 		buildMoveDataSpaces(board,  0, 2,  0, -2,  2, 0,  -2, 0,
 				-1, 1,   -1, -1,    1, 1,   1, -1,   

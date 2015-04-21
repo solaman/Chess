@@ -15,10 +15,8 @@ import main.chessGames.StandardChess;
 import main.chessMoves.RookBasic;
 import main.chessPieces.Pawn;
 import main.chessPieces.Rook;
+import org.json.*;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 

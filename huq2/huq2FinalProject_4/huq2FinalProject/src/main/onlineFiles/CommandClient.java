@@ -13,8 +13,7 @@ import java.util.concurrent.Future;
 import javax.swing.JFrame;
 
 import org.apache.commons.io.IOUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 
 import main.ChessGUIFiles.BoardPanelFiles.BoardPanel;
 

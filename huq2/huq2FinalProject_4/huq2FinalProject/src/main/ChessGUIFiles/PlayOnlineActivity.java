@@ -11,8 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 
 import main.ChessBoard;
 import main.ChessGame;

@@ -1,6 +1,6 @@
 package main.chessGames;
 
-import org.json.JSONObject;
+import org.json.*;
 
 import main.ChessBoard;
 import main.ChessGame;

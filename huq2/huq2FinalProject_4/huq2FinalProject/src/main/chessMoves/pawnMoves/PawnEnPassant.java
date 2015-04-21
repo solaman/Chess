@@ -62,7 +62,7 @@ public class PawnEnPassant extends PawnMove {
 
 	@Override
 	public void buildMoveData(HexagonalBoard board) {
-		buildMoveData((ChessBoard) board, -1, 1);
+		buildMoveData(board, -1, 1);
 	}
 	
 	protected void buildMoveData(ChessBoard board, int enemyYDisp, int captYDis){

@@ -14,6 +14,7 @@ public class GhostMotionAdapter extends MouseMotionAdapter
 		this.glassPane = glassPane;
 	}
 
+	@Override
 	public void mouseDragged(MouseEvent e)
     {
         Component c = e.getComponent();

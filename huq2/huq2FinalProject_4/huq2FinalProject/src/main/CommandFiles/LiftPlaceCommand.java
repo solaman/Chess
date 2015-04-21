@@ -1,6 +1,6 @@
 package main.CommandFiles;
 
-import org.json.JSONArray;
+import org.json.*;
 
 import main.ChessBoard;
 import main.ChessPiece;

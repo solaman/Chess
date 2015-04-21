@@ -8,6 +8,9 @@ import java.util.concurrent.Semaphore;
 
 import javax.swing.JFrame;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import main.ChessBoard;
 import main.ChessGUIFiles.MouseAdapters.OnlinePlayMouseAdapter;
 import main.ChessGUIFiles.PlayOnlineActivity;
@@ -17,9 +20,6 @@ import main.chessGames.CustomGame;
 import main.chessGames.GlinskisChess;
 import main.chessGames.ShafransChess;
 import main.chessGames.StandardChess;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author Solaman

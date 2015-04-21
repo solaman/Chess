@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 
-import java.net.URL;
 import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
@@ -29,7 +28,8 @@ public class GhostPictureAdapter extends GhostDropAdapter
        }
 	}
 
-    public void mousePressed(MouseEvent e)
+    @Override
+	public void mousePressed(MouseEvent e)
     {
         Component c = e.getComponent();
 
@@ -44,7 +44,8 @@ public class GhostPictureAdapter extends GhostDropAdapter
         glassPane.repaint();
     }
 
-    public void mouseReleased(MouseEvent e)
+    @Override
+	public void mouseReleased(MouseEvent e)
     {
         Component c = e.getComponent();
 

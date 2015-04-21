@@ -13,7 +13,8 @@ public class GhostComponentAdapter extends GhostDropAdapter
         super(glassPane, action);
     }
 
-    public void mousePressed(MouseEvent e)
+    @Override
+	public void mousePressed(MouseEvent e)
     {
         Component c = e.getComponent();
 
@@ -32,7 +33,8 @@ public class GhostComponentAdapter extends GhostDropAdapter
         glassPane.repaint();
     }
 
-    public void mouseReleased(MouseEvent e)
+    @Override
+	public void mouseReleased(MouseEvent e)
     {
         Component c = e.getComponent();
 

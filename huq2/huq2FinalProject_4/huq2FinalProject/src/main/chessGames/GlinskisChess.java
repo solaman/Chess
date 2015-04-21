@@ -37,6 +37,7 @@ public class GlinskisChess extends ChessGame {
 		
 	}
 	
+	@Override
 	public String getName(){
 		return NAME;
 	}

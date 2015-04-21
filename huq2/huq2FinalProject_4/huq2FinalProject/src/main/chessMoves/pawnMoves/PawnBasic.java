@@ -43,8 +43,9 @@ public final class PawnBasic extends PawnMove {
 			addCommandSequence(toMove, owner.getPosition(), toMove);
 	}
 	
+	@Override
 	public void buildMoveData(HexagonalBoard board){
-		buildPathDataCoord( (ChessBoard) board, owner.getXCoord(), owner.getYCoord()+yDelta*2);
+		buildPathDataCoord( board, owner.getXCoord(), owner.getYCoord()+yDelta*2);
 	}
 
 	@Override

@@ -10,6 +10,7 @@ public class GhostDropManagerDemo extends AbstractGhostDropManager {
         super(target);
     }
 
+	@Override
 	public void ghostDropped(GhostDropEvent e) {
 	   String action = e.getAction();
 	   Point p = getTranslatedPoint(e.getDropLocation());
