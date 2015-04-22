@@ -146,8 +146,8 @@ public class ChessMenu {
     	gamesToStart.add( new StandardChess());
     	File dir= new File("src/resources/CustomGames");
     	for( File file : dir.listFiles()){
-    		CustomGame custom= new CustomGame();
     		try {
+    			CustomGame custom= new CustomGame();
 				custom.loadFile( file.getPath());
 				gamesToStart.add( custom);
 			} catch (IOException | JSONException e) { e.printStackTrace(); }

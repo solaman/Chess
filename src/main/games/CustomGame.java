@@ -54,8 +54,10 @@ public class CustomGame extends ChessGame {
 	@SuppressWarnings("rawtypes")
 	public CustomGame(){
 		try {
-			loadFile("resources/TestResources/EmptyGame.json");
-		} catch (IOException | JSONException e) {}
+			loadFile("src/resources/TestResources/EmptyGame.json");
+		} catch (IOException | JSONException e) {
+			System.err.print("Skeleton \"EmptyGame.json\" could not be found.\n");
+		}
 	}
 	
 	public CustomGame(JSONObject bluePrint){
@@ -89,7 +91,7 @@ public class CustomGame extends ChessGame {
 	 * @throws JSONException -error occurred while converting the bluePrint JSONObject to a json formatted string
 	 */
 	public void saveFile() throws FileNotFoundException, UnsupportedEncodingException, JSONException{
-		PrintWriter writer = new PrintWriter("resources/CustomGames/"+name+".json", "UTF-8");
+		PrintWriter writer = new PrintWriter("src/resources/CustomGames/"+name+".json", "UTF-8");
 		String jString= bluePrint.toString(3);
 		writer.print(jString);
 		writer.close();

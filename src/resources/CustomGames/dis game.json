@@ -1,0 +1,30 @@
+{
+   "pieces": [
+      {
+         "yCoord": 1,
+         "xCoord": 3,
+         "className": "main.pieces.King",
+         "player": 0
+      },
+      {
+         "yCoord": 4,
+         "xCoord": 1,
+         "className": "main.pieces.King",
+         "player": 1
+      }
+   ],
+   "name": "dis game",
+   "board": {
+      "xLength": 5,
+      "className": "main.boards.ChessBoard",
+      "yLength": 5
+   },
+   "pieceTypes": {
+      "main.pieces.Knight": [],
+      "main.pieces.King": [],
+      "main.pieces.Bishop": [],
+      "main.pieces.Queen": [],
+      "main.pieces.Pawn": [],
+      "main.pieces.Rook": []
+   }
+}

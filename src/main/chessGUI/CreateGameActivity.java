@@ -210,7 +210,7 @@ public class CreateGameActivity extends JPanel {
 	 * TODO these are built-in references, this should automatically include all ChessPieces
 	 */
 	private void addLoadOutOptions(){
-		List<Class> moveClasses= ClassRetriever.getClassesForPackage("main.chessMoves");
+		List<Class> moveClasses= ClassRetriever.getClassesForPackage("main.movePatterns");
 		addLoadOutOptions(Pawn.class, moveClasses);
 		addLoadOutOptions(King.class, moveClasses);
 		addLoadOutOptions(Bishop.class, moveClasses);
@@ -228,7 +228,7 @@ public class CreateGameActivity extends JPanel {
 	private void addLoadOutOptions(Class pieceClass, List<Class> moveClasses){
 		String className= pieceClass.getName();
 		JPanel loadOutPanel= createMoveOptions(moveClasses);
-		tabs.addTab(className.substring(17), null, createMoveOptions(moveClasses), className);
+		tabs.addTab(className.substring(12), null, createMoveOptions(moveClasses), className);
 	}
 	
 	/**
@@ -345,6 +345,7 @@ public class CreateGameActivity extends JPanel {
 					ChessMenu.restartMenu();
 				} catch (FileNotFoundException | UnsupportedEncodingException
 						| JSONException e) {
+					System.err.print("could not save file");
 					e.printStackTrace();
 				}
 			}
