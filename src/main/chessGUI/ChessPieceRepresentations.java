@@ -73,7 +73,7 @@ public class ChessPieceRepresentations {
 	}
 
 	private static BufferedImage coloredImage(String fileName, int[] fillPixel) throws IOException {
-		BufferedImage image = ImageIO.read(new File("src/resources/images/" + fileName) );
+		BufferedImage image = ImageIO.read(new File("resources/images/" + fileName) );
         int width = image.getWidth();
         int height = image.getHeight();
         WritableRaster raster = image.getRaster();

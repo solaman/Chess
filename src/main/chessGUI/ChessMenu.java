@@ -144,7 +144,7 @@ public class ChessMenu {
     	gamesToStart.add( new GlinskisChess());
     	gamesToStart.add( new ShafransChess());
     	gamesToStart.add( new StandardChess());
-    	File dir= new File("src/resources/CustomGames");
+    	File dir= new File("resources/CustomGames");
     	for( File file : dir.listFiles()){
     		try {
     			CustomGame custom= new CustomGame();

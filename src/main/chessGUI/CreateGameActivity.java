@@ -13,7 +13,6 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -227,7 +226,6 @@ public class CreateGameActivity extends JPanel {
 	 */
 	private void addLoadOutOptions(Class pieceClass, List<Class> moveClasses){
 		String className= pieceClass.getName();
-		JPanel loadOutPanel= createMoveOptions(moveClasses);
 		tabs.addTab(className.substring(12), null, createMoveOptions(moveClasses), className);
 	}
 	

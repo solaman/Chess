@@ -1,0 +1,30 @@
+{
+   "pieces": [
+      {
+         "yCoord": 0,
+         "xCoord": 1,
+         "className": "main.pieces.King",
+         "player": 0
+      },
+      {
+         "yCoord": 2,
+         "xCoord": 2,
+         "className": "main.pieces.King",
+         "player": 1
+      }
+   ],
+   "name": "waat",
+   "board": {
+      "xLength": 3,
+      "className": "main.boards.ChessBoard",
+      "yLength": 3
+   },
+   "pieceTypes": {
+      "main.pieces.Knight": [],
+      "main.pieces.King": [],
+      "main.pieces.Bishop": [],
+      "main.pieces.Queen": [],
+      "main.pieces.Pawn": [],
+      "main.pieces.Rook": []
+   }
+}

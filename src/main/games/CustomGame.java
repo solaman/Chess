@@ -1,6 +1,5 @@
 package main.games;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.List;
 
 import org.json.*;
@@ -54,7 +51,7 @@ public class CustomGame extends ChessGame {
 	@SuppressWarnings("rawtypes")
 	public CustomGame(){
 		try {
-			loadFile("src/resources/TestResources/EmptyGame.json");
+			loadFile("resources/TestResources/EmptyGame.json");
 		} catch (IOException | JSONException e) {
 			System.err.print("Skeleton \"EmptyGame.json\" could not be found.\n");
 		}
@@ -91,7 +88,7 @@ public class CustomGame extends ChessGame {
 	 * @throws JSONException -error occurred while converting the bluePrint JSONObject to a json formatted string
 	 */
 	public void saveFile() throws FileNotFoundException, UnsupportedEncodingException, JSONException{
-		PrintWriter writer = new PrintWriter("src/resources/CustomGames/"+name+".json", "UTF-8");
+		PrintWriter writer = new PrintWriter("resources/CustomGames/"+name+".json", "UTF-8");
 		String jString= bluePrint.toString(3);
 		writer.print(jString);
 		writer.close();
